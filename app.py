@@ -11,5 +11,5 @@ if uploaded_file is not None:
     st.dataframe(df)
     
     #fetch unique users
-    user_list = df['user'].unique().to_list()
+    user_list = df['user'].unique().tolist()
     st.sidebar.selectbox("Show analysis with respect to", user_list)
