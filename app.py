@@ -1,5 +1,6 @@
 import streamlit as st
 import preprocessor
+import helper
 
 st.sidebar.title("Whatsapp Chat Analyser")
 
@@ -18,10 +19,10 @@ if uploaded_file is not None:
     user_list.insert(0, "Overall")
     
     
-    st.sidebar.selectbox("Show analysis with respect to", user_list)
+    selected_user = st.sidebar.selectbox("Show analysis with respect to", user_list)
     
     if st.sidebar.button("Show Analysis"):
         col1, col2, col3, col4 = st.beta_columns(4)
-
+        num_messages = helper.fetch_stats(selected_user, df)
         with col1:
             st.header("Total Messages")
