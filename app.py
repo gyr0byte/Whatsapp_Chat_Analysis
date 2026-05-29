@@ -9,3 +9,7 @@ if uploaded_file is not None:
     data = bytes_data.decode("utf-8")
     df = preprocessor.preprocess(data)
     st.dataframe(df)
+    
+    #fetch unique users
+    user_list = df['user'].unique().to_list()
+    st.sidebar.selectbox("Show analysis with respect to", user_list)
