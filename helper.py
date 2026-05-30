@@ -26,4 +26,5 @@ def fetch_stats(selected_user, df):
 
 def most_busy_users(df):
     x = df['user'].value_counts().head()
-    return x
+    df = round((df['user'].value_counts()/df.shape[0])*100,2).reset_index().rename(columns={"user":"Name","count":"percent"})
+    return x, df

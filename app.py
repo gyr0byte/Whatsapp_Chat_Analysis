@@ -41,7 +41,7 @@ if uploaded_file is not None:
         # finding the busiest users in the group(overall)
         if selected_user == 'Overall':
             st.title('Most Busy Users')
-            x = helper.most_busy_users(df)
+            x,percentage_df = helper.most_busy_users(df)
             fig, ax = plt.subplots()
             col1, col2 = st.columns(2)
             
@@ -49,3 +49,6 @@ if uploaded_file is not None:
                 ax.bar(x.index, x.values)
                 plt.xticks(rotation='vertical')
                 st.pyplot(fig)
+            with col2:
+                st.dataframe(percentage_df)
+                st.title("Percentage of most busy user")
