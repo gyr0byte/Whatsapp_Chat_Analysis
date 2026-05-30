@@ -50,5 +50,5 @@ if uploaded_file is not None:
                 plt.xticks(rotation='vertical')
                 st.pyplot(fig)
             with col2:
-                st.dataframe(percentage_df)
                 st.title("Percentage of most busy user")
+                st.dataframe(percentage_df)
