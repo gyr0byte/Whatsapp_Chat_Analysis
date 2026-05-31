@@ -1,3 +1,5 @@
+from collections import Counter
+import pandas as pd
 from urlextract import URLExtract
 from wordcloud import WordCloud
 extractor = URLExtract()
@@ -37,3 +39,16 @@ def create_wordcloud(selected_user, df):
     wc = WordCloud(width=500,height=500,min_font_size=10,background_color='white')
     df_wc = wc.generate(df['message'].str.cat(sep=" "))
     return df_wc
+
+def most_common_words(selected_user,df):
+    if selected_user != "Overall":
+        temp = temp[temp['user'] == selected_user]
+        
+    temp = df[df["message"].str.lower() != "<media omitted>"]
+    temp = temp[temp['message'] != 'Media omitted>']
+    
+    words = []
+    for message in temp['message']:
+        words.extend(message.split())
+    
+    return pd.DataFrame(Counter(words).most_common(20))

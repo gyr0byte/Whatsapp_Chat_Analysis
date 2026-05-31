@@ -60,3 +60,6 @@ if uploaded_file is not None:
         fig,ax = plt.subplots()
         ax.imshow(df_wc)
         st.pyplot(fig)
+        
+        # most common words
+        
