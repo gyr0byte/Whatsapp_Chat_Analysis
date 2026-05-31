@@ -55,6 +55,7 @@ if uploaded_file is not None:
 
 
         #wordcloud
+        st.title("World Cloud")
         df_wc = helper.create_wordcloud(selected_user,df)
         fig,ax = plt.subplots()
         ax.imshow(df_wc)
