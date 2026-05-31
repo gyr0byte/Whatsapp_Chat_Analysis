@@ -1,4 +1,6 @@
 from collections import Counter
+import string
+from pathlib import Path
 import pandas as pd
 from urlextract import URLExtract
 from wordcloud import WordCloud
@@ -7,6 +9,34 @@ extractor = URLExtract()
 
 def _is_media_omitted(message_series):
     return message_series.str.strip().str.lower() == "<media omitted>"
+
+
+def _load_stopwords():
+    stopwords_path = Path(__file__).with_name("stop_words.txt")
+    if not stopwords_path.exists():
+        return set()
+    return {
+        line.strip().lower()
+        for line in stopwords_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    }
+
+
+STOPWORDS = _load_stopwords()
+
+
+def _normalize_token(token):
+    return token.strip(string.punctuation).lower()
+
+
+def _filtered_tokens(messages):
+    tokens = []
+    for message in messages:
+        for token in message.split():
+            cleaned = _normalize_token(token)
+            if cleaned and cleaned not in STOPWORDS:
+                tokens.append(cleaned)
+    return tokens
 
 
 def fetch_stats(selected_user, df):
@@ -45,8 +75,9 @@ def create_wordcloud(selected_user, df):
         df = df[df['user'] == selected_user]
     temp = df[~_is_media_omitted(df["message"])]
     wc = WordCloud(width=500, height=500, min_font_size=10,
-                   background_color='white')
-    df_wc = wc.generate(temp['message'].str.cat(sep=" "))
+                   background_color='white', stopwords=STOPWORDS)
+    tokens = _filtered_tokens(temp['message'])
+    df_wc = wc.generate(" ".join(tokens))
     return df_wc
 
 
@@ -54,11 +85,5 @@ def most_common_words(selected_user, df):
     temp = df[~_is_media_omitted(df["message"])]
     if selected_user != "Overall":
         temp = temp[temp['user'] == selected_user]
-
-    words = []
-    for message in temp['message']:
-        words.extend(message.split())
-    words = [word for word in words if word not in {
-        "*", "--", "#", "->", "...", "-", "---", "___", "→", "—", "–"}]
-
-    return pd.DataFrame(Counter(words).most_common(25))
+    tokens = _filtered_tokens(temp['message'])
+    return pd.DataFrame(Counter(tokens).most_common(25))
