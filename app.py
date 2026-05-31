@@ -62,4 +62,7 @@ if uploaded_file is not None:
         st.pyplot(fig)
         
         # most common words
-        
+        helper.most_common_words(selected_user,df)
+        st.title("Most Common Words")
+        most_common_df = helper.most_common_words(selected_user,df)
+        st.dataframe(most_common_df)
