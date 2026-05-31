@@ -52,3 +52,6 @@ if uploaded_file is not None:
             with col2:
                 st.title("Percentage of most busy user")
                 st.dataframe(percentage_df)
+
+
+        #wordcloud
