@@ -59,4 +59,4 @@ def most_common_words(selected_user, df):
     for message in temp['message']:
         words.extend(message.split())
 
-    return pd.DataFrame(Counter(words).most_common(20))
+    return pd.DataFrame(Counter(words).most_common(25))
