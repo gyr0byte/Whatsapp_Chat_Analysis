@@ -58,5 +58,7 @@ def most_common_words(selected_user, df):
     words = []
     for message in temp['message']:
         words.extend(message.split())
+    words = [word for word in words if word not in {
+        "*", "--", "#", "->", "...", "-", "---", "___", "→", "—", "–"}]
 
     return pd.DataFrame(Counter(words).most_common(25))
