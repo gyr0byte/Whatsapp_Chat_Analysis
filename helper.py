@@ -34,7 +34,7 @@ def _filtered_tokens(messages):
     for message in messages:
         for token in message.split():
             cleaned = _normalize_token(token)
-            if cleaned and cleaned not in STOPWORDS:
+            if cleaned and not cleaned.isdigit() and cleaned not in STOPWORDS:
                 tokens.append(cleaned)
     return tokens
 
