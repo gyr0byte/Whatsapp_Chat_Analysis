@@ -20,6 +20,8 @@ A Streamlit web app that analyzes exported WhatsApp chat data and delivers insig
 - Monthly timeline activity chart
 - Daily timeline activity chart
 - Activity heatmap (busiest hours and days)
+- Activity map for busiest day and month
+- Weekly activity heatmap
 - Most active users analysis
 - Emoji analysis
 
@@ -30,6 +32,7 @@ A Streamlit web app that analyzes exported WhatsApp chat data and delivers insig
 - Pandas
 - Matplotlib
 - Plotly
+- Seaborn
 - WordCloud
 - URLExtract
 - Emoji
@@ -70,6 +73,8 @@ requirements.txt
 - Identify the most active users and peak chat times.
 - Discover frequently used words and phrases.
 - Track daily and monthly activity timelines.
+- See busiest days and months at a glance.
+- Explore weekly activity intensity by hour and day.
 - Spot patterns in monthly activity trends.
 - Analyze emoji usage across participants.
 
