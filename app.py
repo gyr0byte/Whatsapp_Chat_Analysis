@@ -2,6 +2,7 @@ import streamlit as st
 import preprocessor
 import helper
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 st.sidebar.title("Whatsapp Chat Analyser")
 
@@ -77,13 +78,8 @@ if uploaded_file is not None:
         with col1:
             st.dataframe(emoji_df)
         with col2:
-            fig, ax = plt.subplots()
             if not emoji_df.empty:
-                ax.pie(
-                    emoji_df[1],
-                    labels=emoji_df[0],
-                    textprops={"fontfamily": "Segoe UI Emoji"},
-                )
-                st.pyplot(fig)
+                fig = px.pie(emoji_df, values=1, names=0)
+                st.plotly_chart(fig, use_container_width=True)
             else:
                 st.info("No emoji data to display.")
