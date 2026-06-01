@@ -24,3 +24,4 @@ Thumbs.db
 # Text files (raw chats)
 *.txt
 !stop_words.txt
+!requirements.txt
