@@ -69,6 +69,7 @@ requirements.txt
 
 - Identify the most active users and peak chat times.
 - Discover frequently used words and phrases.
+- Track daily and monthly activity timelines.
 - Spot patterns in monthly activity trends.
 - Analyze emoji usage across participants.
 
