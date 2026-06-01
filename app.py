@@ -68,3 +68,5 @@ if uploaded_file is not None:
         fig, ax = plt.subplots()
         ax.barh(most_common_df[0], most_common_df[1])
         st.pyplot(fig)
+        
+        
