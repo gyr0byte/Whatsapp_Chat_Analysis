@@ -2,6 +2,6 @@ streamlit
 pandas
 matplotlib
 plotly
-urlextract
 wordcloud
+urlextract
 emoji

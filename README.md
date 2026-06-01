@@ -28,8 +28,9 @@ A Streamlit web app that analyzes exported WhatsApp chat data and delivers insig
 - Streamlit
 - Pandas
 - Matplotlib
-- Seaborn
+- Plotly
 - WordCloud
+- URLExtract
 - Emoji
 
 ## 🛠️ Installation
