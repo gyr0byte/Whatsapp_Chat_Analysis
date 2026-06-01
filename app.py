@@ -11,8 +11,6 @@ if uploaded_file is not None:
     bytes_data = uploaded_file.getvalue()
     data = bytes_data.decode("utf-8")
     df = preprocessor.preprocess(data)
-    st.dataframe(df)
-
     # fetch unique users
     user_list = df['user'].unique().tolist()
     if 'group_notification' in user_list:
@@ -24,9 +22,10 @@ if uploaded_file is not None:
         "Show analysis with respect to", user_list)
 
     if st.sidebar.button("Show Analysis"):
+        
+        num_messages, words, num_media_messages, num_links = helper.fetch_stats(selected_user, df)
         col1, col2, col3, col4 = st.columns(4)
-        num_messages, words, num_media_messages, num_links = helper.fetch_stats(
-            selected_user, df)
+        st.title("Top Statistics")
         with col1:
             st.header("Total Messages")
             st.title(num_messages)
