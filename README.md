@@ -18,6 +18,7 @@ A Streamlit web app that analyzes exported WhatsApp chat data and delivers insig
 - Most common words bar chart
 - Filter analysis by specific user or overall
 - Monthly timeline activity chart
+- Daily timeline activity chart
 - Activity heatmap (busiest hours and days)
 - Most active users analysis
 - Emoji analysis
