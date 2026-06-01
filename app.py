@@ -3,6 +3,7 @@ import preprocessor
 import helper
 import matplotlib.pyplot as plt
 import plotly.express as px
+import seaborn as sns 
 
 st.sidebar.title("Whatsapp Chat Analyser")
 
@@ -75,6 +76,13 @@ if uploaded_file is not None:
             ax.bar(busy_month.index, busy_month.values,color='orange')
             plt.xticks(rotation='vertical')
             st.pyplot(fig) 
+        
+        st.title("Weekly Activity HeatMap")
+        user_heatmap = helper.activity_heatmap(selected_user,df)
+        fig, ax = plt.subplots()
+        ax = sns.heatmap(user_heatmap)
+        st.pyplot(fig)
+        
         
         
         
