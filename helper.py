@@ -113,3 +113,5 @@ def daily_timeline(selected_user,df):
     daily_timeline = df.groupby('only_date').count()['message'].reset_index()
     
     return daily_timeline
+
+def

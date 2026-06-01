@@ -56,6 +56,9 @@ if uploaded_file is not None:
         plt.xticks(rotation='vertical')
         st.pyplot(fig)
         
+        # Activity Map
+        
+        
         # finding the busiest users in the group(overall)
         if selected_user == 'Overall':
             st.title('Most Busy Users')
