@@ -4,6 +4,7 @@ from pathlib import Path
 import pandas as pd
 from urlextract import URLExtract
 from wordcloud import WordCloud
+import emoji
 extractor = URLExtract()
 
 
@@ -87,3 +88,11 @@ def most_common_words(selected_user, df):
         temp = temp[temp['user'] == selected_user]
     tokens = _filtered_tokens(temp['message'])
     return pd.DataFrame(Counter(tokens).most_common(25))
+
+def emoji_helper(selected_user, df):
+    if selected_user != "Overall":
+        df = df[df['user'] == selected_user]
+    emojis = []
+    for message in df['message']:
+        emojis.extend(emoji.emoji_list(message))
+    return pd.DataFrame(Counter([e['emoji'] for e in emojis]).most_common(20))

@@ -69,4 +69,4 @@ if uploaded_file is not None:
         ax.barh(most_common_df[0], most_common_df[1])
         st.pyplot(fig)
         
-        
+        # emoji analysis
