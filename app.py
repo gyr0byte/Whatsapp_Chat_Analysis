@@ -79,7 +79,11 @@ if uploaded_file is not None:
         with col2:
             fig, ax = plt.subplots()
             if not emoji_df.empty:
-                ax.pie(emoji_df[1], labels=emoji_df[0])
+                ax.pie(
+                    emoji_df[1],
+                    labels=emoji_df[0],
+                    textprops={"fontfamily": "Segoe UI Emoji"},
+                )
                 st.pyplot(fig)
             else:
                 st.info("No emoji data to display.")
