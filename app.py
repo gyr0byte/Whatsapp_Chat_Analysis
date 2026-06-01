@@ -1,7 +1,7 @@
 import streamlit as st
 import preprocessor
 import helper
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
 
 st.sidebar.title("Whatsapp Chat Analyser")
 
@@ -24,7 +24,8 @@ if uploaded_file is not None:
 
     if st.sidebar.button("Show Analysis"):
         col1, col2, col3, col4 = st.columns(4)
-        num_messages, words, num_media_messages, num_links= helper.fetch_stats(selected_user, df)
+        num_messages, words, num_media_messages, num_links = helper.fetch_stats(
+            selected_user, df)
         with col1:
             st.header("Total Messages")
             st.title(num_messages)
@@ -37,14 +38,14 @@ if uploaded_file is not None:
         with col4:
             st.header("Links Shared")
             st.title(num_links)
-            
+
         # finding the busiest users in the group(overall)
         if selected_user == 'Overall':
             st.title('Most Busy Users')
-            x,percentage_df = helper.most_busy_users(df)
+            x, percentage_df = helper.most_busy_users(df)
             fig, ax = plt.subplots()
             col1, col2 = st.columns(2)
-            
+
             with col1:
                 ax.bar(x.index, x.values)
                 plt.xticks(rotation='vertical')
@@ -53,30 +54,32 @@ if uploaded_file is not None:
                 st.title("Percentage of most busy user")
                 st.dataframe(percentage_df)
 
-
-        #wordcloud
+        # wordcloud
         st.title("World Cloud")
-        df_wc = helper.create_wordcloud(selected_user,df)
-        fig,ax = plt.subplots()
+        df_wc = helper.create_wordcloud(selected_user, df)
+        fig, ax = plt.subplots()
         ax.imshow(df_wc)
         st.pyplot(fig)
-        
+
         # most common words
-        helper.most_common_words(selected_user,df)
+        helper.most_common_words(selected_user, df)
         st.title("Most Common Words")
-        most_common_df = helper.most_common_words(selected_user,df)
+        most_common_df = helper.most_common_words(selected_user, df)
         fig, ax = plt.subplots()
         ax.barh(most_common_df[0], most_common_df[1])
         st.pyplot(fig)
-        
+
         # emoji analysis
-        emoji_df = helper.emoji_helper(selected_user,df)
+        emoji_df = helper.emoji_helper(selected_user, df)
         st.title("Emoji Analysis")
-        
-        col1,col1 = st.columns(2)
+
+        col1, col2 = st.columns(2)
         with col1:
             st.dataframe(emoji_df)
         with col2:
-            fig,ax = plt.subplots()
-            ax.pie(emoji_df[0],emoji_df[1])
-            st.pyplot(fig)
+            fig, ax = plt.subplots()
+            if not emoji_df.empty:
+                ax.pie(emoji_df[1], labels=emoji_df[0])
+                st.pyplot(fig)
+            else:
+                st.info("No emoji data to display.")
