@@ -7,7 +7,7 @@ A Streamlit web app that analyzes exported WhatsApp chat data and delivers insig
 
 ## 📸 Demo Screenshot
 
-> Add your screenshot here (for example: `assets/demo.png`).
+![Demo Screenshot](assets/demo.png)
 
 ## ✨ Features
 
