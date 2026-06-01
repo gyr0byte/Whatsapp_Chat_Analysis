@@ -49,5 +49,18 @@ def preprocess(data):
     df['hour'] = df['date'].dt.hour
     df['minute'] = df['date'].dt.minute
     df.drop(columns=['user_message'], inplace=True)
-
+    
+    period = []
+    for hour in df[['day_name','hour']]['hour']:
+        start = hour % 12
+        start = 12 if start == 0 else start
+        end_hour = (hour + 1) % 24
+        end = end_hour % 12
+        end = 12 if end == 0 else end
+        start_ampm = "AM" if hour < 12 else "PM"
+        end_ampm = "AM" if end_hour < 12 else "PM"
+        period.append(f"{start} {start_ampm}-{end} {end_ampm}")
+    
+    df['period'] = period
+    
     return df
