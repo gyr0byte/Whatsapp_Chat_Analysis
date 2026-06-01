@@ -35,11 +35,12 @@ def preprocess(data):
             message_texts.append(entry[0])
     df["user"] = users
     df["message"] = [m.replace("\n", " ").strip() for m in message_texts]
-    
+
     # drop empty/media-omitted messages
     df = df[df["message"] != ""]
     df = df[df["message"].str.lower() != "<media omitted>"]
-    
+
+    df['year'] = df['date'].dt.year
     df['month_num'] = df['date'].dt.month
     df['month'] = df['date'].dt.month_name()
     df['day'] = df['date'].dt.day
