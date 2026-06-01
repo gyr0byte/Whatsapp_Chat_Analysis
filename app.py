@@ -22,8 +22,9 @@ if uploaded_file is not None:
         "Show analysis with respect to", user_list)
 
     if st.sidebar.button("Show Analysis"):
-        
-        num_messages, words, num_media_messages, num_links = helper.fetch_stats(selected_user, df)
+
+        num_messages, words, num_media_messages, num_links = helper.fetch_stats(
+            selected_user, df)
         st.title("Top Statistics")
         col1, col2, col3, col4 = st.columns(4)
         with col1:
@@ -38,12 +39,12 @@ if uploaded_file is not None:
         with col4:
             st.header("Links Shared")
             st.title(num_links)
-            
+
         # Timeline
         st.title("Monthly Timeline")
         timeline = helper.monthly_timeline(selected_user, df)
         fig, ax = plt.subplots()
-        ax.plot(timeline[0], timeline[1])
+        ax.plot(timeline["time"], timeline["message"])
         plt.xticks(rotation='vertical')
         st.pyplot(fig)
 
