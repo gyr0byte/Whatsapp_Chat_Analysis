@@ -106,3 +106,8 @@ def monthly_timeline(selected_user,df):
         time.append(timeline['month'][i] + "-" + str(timeline['year'][i]))
     timeline['time'] = time
     return timeline
+
+def daily_timeline(selected_user,df):
+    if selected_user != "Overall": 
+        df = df[df['user'] == selected_user]
+    

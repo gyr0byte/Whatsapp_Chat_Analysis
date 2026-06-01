@@ -40,6 +40,7 @@ def preprocess(data):
     df = df[df["message"] != ""]
     df = df[df["message"].str.lower() != "<media omitted>"]
 
+    df['only_date'] = df['date'].dt.date
     df['year'] = df['date'].dt.year
     df['month_num'] = df['date'].dt.month
     df['month'] = df['date'].dt.month_name()
